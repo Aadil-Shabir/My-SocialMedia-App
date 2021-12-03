@@ -7,9 +7,6 @@ import PostCard from "../components/PostCard";
 
 const Home = () => {
   const { loading, data } = useQuery(FETCH_POSTS_QUERY);
-  if (data) {
-    console.log(data.getPosts);
-  }
 
   return (
     <Grid columns={3}>
