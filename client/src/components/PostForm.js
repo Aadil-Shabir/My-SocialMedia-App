@@ -35,20 +35,30 @@ const PostForm = () => {
   }
 
   return (
-    <Form onSubmit={onSubmitHandler}>
-      <h2>Create A Post: </h2>
-      <Form.Field>
-        <Form.Input
-          placeholder="Social Media"
-          name="body"
-          onChange={onChangeHandler}
-          value={values.body}
-        />
-        <Button type="submit" color="violet">
-          Submit
-        </Button>
-      </Form.Field>
-    </Form>
+    <>
+      <Form onSubmit={onSubmitHandler}>
+        <h2>Create A Post: </h2>
+        <Form.Field>
+          <Form.Input
+            placeholder="Social Media"
+            name="body"
+            onChange={onChangeHandler}
+            value={values.body}
+            error={error ? true : false}
+          />
+          <Button type="submit" color="violet">
+            Submit
+          </Button>
+        </Form.Field>
+      </Form>
+      {error && (
+        <div className="ui error message" style={{ marginBottom: 20 }}>
+          <ul className="list">
+            <li>{error.graphQLErrors[0].message}</li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 
