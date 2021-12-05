@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Form } from "semantic-ui-react";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 import { useNavigate } from "react-router";
 
+import { AuthContext } from "../context/auth";
 import { useForm } from "../util/hooks";
 
 const Login = () => {
+  const context = useContext(AuthContext);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -19,7 +21,8 @@ const Login = () => {
   );
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(_, result) {
+    update(_, { data: { login: userData } }) {
+      context.login(userData);
       navigate("/");
     },
     onError(err) {
@@ -43,7 +46,7 @@ const Login = () => {
         noValidate
         className={loading ? "loading" : ""}
       >
-        <h1>Register</h1>
+        <h1>Login</h1>
         <Form.Input
           label="Username"
           placeholder="Username.."
