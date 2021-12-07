@@ -16,7 +16,7 @@
   "devDependencies": {},
   "scripts": {
     "serve": "node index",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
